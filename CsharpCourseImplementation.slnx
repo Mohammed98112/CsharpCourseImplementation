@@ -1,1 +1,4 @@
-<Solution />
+<Solution>
+  <Project Path="HotelManagementSystem/HotelManagementSystem.csproj" Id="520b7037-ab20-4c3d-a6b8-c6ac7f0a0a1d" />
+  <Project Path="Project 1/Project 1.csproj" />
+</Solution>

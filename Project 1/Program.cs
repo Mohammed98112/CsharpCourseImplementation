@@ -66,7 +66,7 @@ namespace Project_1
 
                     //2. View Patient
                     case 2:
-                        if (ISpatientActive == false)
+                        if (ISpatientActive == true)
                         {
                             Console.WriteLine("No information founded");
                         }
