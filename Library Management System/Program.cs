@@ -82,6 +82,44 @@ namespace Library_Management_System
 
         }
 
+        public static bool SearchBookByTitle(string Search)
+        {
+
+
+
+
+
+
+            if (Search.ToLower() != bookTitle)
+            {
+                return false;
+            }
+
+            else
+            {
+                return true;
+            }
+
+
+
+
+        }
+
+        // Borrows a book using ref parameter function
+        static void BorrowBook(ref int copies)
+        {
+            if (copies <= 0)
+            {
+                Console.WriteLine("No copies available.");
+                return;
+            }
+
+            copies--;
+
+            Console.WriteLine("You borrowed: " + bookTitle);
+        }
+
+
 
         static void Main(string[] args)
             {
@@ -132,8 +170,40 @@ namespace Library_Management_System
 
                             break;
 
-                    }
+                    //Search Book by Title
+                    case 2:
+                        if (isMemberRegistered == false)
+                        {
+                            Console.WriteLine("please register first");
+                        }
+                        else
+                        {
+
+                            Console.WriteLine("enter Book title you want: ");
+                            if (SearchBookByTitle(Console.ReadLine()) == true)
+                            {
+
+                                Console.WriteLine("the book is found");
+
+                            }
+                            else
+                            {
+
+                                Console.WriteLine("the book is not found");
+
+
+                            }
+
+                        }
+                        break;
+
+                    //Borrow a Book
+                    case 3:
+
+                        BorrowBook(ref availableCopies);
+                        break;
                 }
+            }
         }
     }
 }
