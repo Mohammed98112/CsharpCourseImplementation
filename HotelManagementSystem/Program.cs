@@ -72,6 +72,8 @@
                         guestPhone = Console.ReadLine().Trim();
                         Console.WriteLine("enter room Type: ");
                         roomType = Console.ReadLine().Trim();
+                        Console.WriteLine("enter nightly rate: ");
+                        nightlyRate = Convert.ToDouble(Console.ReadLine());
 
                         roomNumber = random.Next(1, 999);
 
@@ -140,6 +142,31 @@
                         else
                         {
 
+                            totalBill = nightlyRate * numberOfNights;
+                            double discountAmount = totalBill * (discountPercentage / 100);
+                            double finalBill = totalBill - discountAmount;
+
+                            finalBill = Math.Round(finalBill, 2);
+
+                            Console.WriteLine("Total Bill : $" + finalBill);
+
+                            Console.WriteLine("\nGuest Checked Out Successfully.");
+
+                            // Reset room
+                            guestName = "";
+                            guestPhone = "";
+                            roomType = "";
+                            roomNotes = "";
+                            checkInDate = DateTime.Today;
+                            checkOutDate = DateTime.Today;
+
+                            roomNumber = 0;
+                            nightlyRate = 0;
+                            discountPercentage = 0;
+                            numberOfNights = 0;
+
+                            isguestRegistered = false;
+                            isguestCheckedIn = false;
 
 
 
