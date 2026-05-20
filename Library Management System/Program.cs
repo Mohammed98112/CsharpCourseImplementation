@@ -57,8 +57,33 @@ namespace Library_Management_System
 
 
             }
+        }
 
-            static void Main(string[] args)
+            //display member
+        public static void DisplayMember()
+        {
+
+
+            if (isMemberRegistered == false)
+            {
+                Console.WriteLine("There is no information");
+
+            }
+            else
+            {
+                Console.WriteLine("memberName     : " + memberName.ToUpper());
+                Console.WriteLine("memberID    : " + Convert.ToString(memberID));
+                Console.WriteLine("memberEmail     : " + Convert.ToString(memberEmail));
+                Console.WriteLine("membershipExpiry       : " + membershipExpiry);
+                Console.WriteLine("memberTier    : " + memberTier);
+
+            }
+
+
+        }
+
+
+        static void Main(string[] args)
             {
                 bool exit = false;
                 while (exit == false)
@@ -100,9 +125,15 @@ namespace Library_Management_System
 
 
                             break;
+                        //Display Member Profile
+                        case 1:
+
+                            DisplayMember();
+
+                            break;
+
                     }
                 }
-            }
         }
     }
 }
