@@ -106,7 +106,7 @@ namespace Library_Management_System
         }
 
         // Borrows a book using ref parameter function
-        static void BorrowBook(ref int copies)
+        public static void BorrowBook(ref int copies)
         {
             if (copies <= 0)
             {
@@ -117,7 +117,18 @@ namespace Library_Management_System
             copies--;
 
             Console.WriteLine("You borrowed: " + bookTitle);
+            Console.WriteLine("Book Borrowed Successfully!");
         }
+
+
+
+            // Returns a book using ref parameter
+            static void ReturnBook(ref int copies)
+            {
+                copies = Math.Min(100, copies + 1);
+
+                Console.WriteLine("Book Returned Successfully!");
+            }
 
 
 
@@ -163,12 +174,16 @@ namespace Library_Management_System
 
 
                             break;
+
+
+
                         //Display Member Profile
                         case 1:
 
                             DisplayMember();
 
                             break;
+
 
                     //Search Book by Title
                     case 2:
@@ -197,12 +212,88 @@ namespace Library_Management_System
                         }
                         break;
 
+
                     //Borrow a Book
                     case 3:
 
                         BorrowBook(ref availableCopies);
                         break;
+
+
+
+                    //Return a Book
+                    case 4:
+                        ReturnBook(ref availableCopies);
+
+
+                        break;
+
+
+                    //Calculate Late Fine
+                    case 5:
+                        Console.WriteLine("");
+                        break;
+
+
+                    //Apply Member Discount
+                    case 6:
+                        Console.WriteLine("");
+                        break;
+
+
+                    //Check Borrowing Eligibility
+                    case 7:
+                        Console.WriteLine("");
+                        break;
+
+
+                    //Register Book
+                    case 8:
+                        Console.WriteLine("");
+                        break;
+
+                    //Generate Member ID
+                    case 9:
+                        Console.WriteLine("");
+                        break;
+
+
+                    //Display Book Details
+                    case 10:
+                        Console.WriteLine("");
+                        break;
+
+
+                    //Calculate Renewal Fee
+                    case 11:
+                        Console.WriteLine("");
+                        break;
+
+
+                    //Update Member Email
+                    case 12:
+                        Console.WriteLine("");
+                        break;
+
+                    //Session Summary
+                    case 13:
+                        Console.WriteLine("");
+                        break;
+                    //Exit
+                    case 14:
+                        exit = true;
+                        break;
+
+
+                    //wrong option
+                    default:
+                        Console.WriteLine("invalid option");
+                        break;
+
                 }
+                Console.WriteLine("press any key to continue...");
+                Console.ReadKey();
+            
             }
         }
     }
