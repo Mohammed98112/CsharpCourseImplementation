@@ -140,6 +140,20 @@ namespace Library_Management_System
             return fine;
         }
 
+        //member discount
+        public static double MemberDiscount(double price)
+        {
+            double discount = 0;
+            if (memberTier.ToLower() == "gold")
+            {
+                discount = 0.2;
+            }
+            else if (memberTier.ToLower() == "silver")
+            {
+                discount = 0.1;
+            }
+            return price * (1 - discount);
+        }
 
         static void Main(string[] args)
             {
@@ -257,9 +271,20 @@ namespace Library_Management_System
 
 
 
-                    //Apply Member Discount
+                    //Apply Member discount
                     case 6:
-                        Console.WriteLine("");
+                        if (isMemberRegistered == false)
+                        {
+                            Console.WriteLine("please register first");
+                        }
+                        else
+                        {
+                            Console.WriteLine("enter the book price: ");
+                            double price = Convert.ToDouble(Console.ReadLine());
+                            double discountedPrice = MemberDiscount(price);
+                            Console.WriteLine("Discounted Price: $" + discountedPrice);
+                        }
+
                         break;
 
 
