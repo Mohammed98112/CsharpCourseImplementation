@@ -59,6 +59,8 @@ namespace Library_Management_System
             }
         }
 
+        //All functions 
+
             //display member
         public static void DisplayMember()
         {
@@ -123,13 +125,20 @@ namespace Library_Management_System
 
 
             // Returns a book using ref parameter
-            static void ReturnBook(ref int copies)
+           public static void ReturnBook(ref int copies)
             {
                 copies = Math.Min(100, copies + 1);
 
                 Console.WriteLine("Book Returned Successfully!");
             }
 
+        //calculate late fine
+        public static double CalculateLateFine(int lateDays)
+        {
+            double fine = lateDays * 0.5;
+            totalFinesPaid += fine;
+            return fine;
+        }
 
 
         static void Main(string[] args)
@@ -229,10 +238,23 @@ namespace Library_Management_System
                         break;
 
 
-                    //Calculate Late Fine
+                    //calculate late fine
                     case 5:
-                        Console.WriteLine("");
+                        if (isMemberRegistered == false)
+                        {
+                            Console.WriteLine("please register first");
+                        }
+                        else
+                        {
+                            Console.WriteLine("enter the number of late days: ");
+                            int lateDays = Convert.ToInt32(Console.ReadLine());
+                            double fine = CalculateLateFine(lateDays);
+                            Console.WriteLine("Late Fine: $" + fine);
+                        }
+
+
                         break;
+
 
 
                     //Apply Member Discount
