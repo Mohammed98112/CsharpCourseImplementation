@@ -155,6 +155,26 @@ namespace Library_Management_System
             return price * (1 - discount);
         }
 
+        //Check borrowing eligibility
+        public static bool CheckBorrowingEligibility()
+        {
+            if (isMemberRegistered == false)
+            {
+                Console.WriteLine("please register first");
+                return false;
+            }
+            else
+            {
+                DateTime expiryDate = DateTime.Parse(membershipExpiry);
+                if (DateTime.Now > expiryDate)
+                {
+                    Console.WriteLine("Membership expired. Please renew.");
+                    return false;
+                }
+                return true;
+            }
+        }
+
         static void Main(string[] args)
             {
                 bool exit = false;
@@ -288,9 +308,9 @@ namespace Library_Management_System
                         break;
 
 
-                    //Check Borrowing Eligibility
+                    //Check borrowing eligibility
                     case 7:
-                        Console.WriteLine("");
+                        CheckBorrowingEligibility();
                         break;
 
 
