@@ -175,6 +175,29 @@ namespace Library_Management_System
             }
         }
 
+        //Register Book
+        public static void RegisterBook()
+        {
+            if (isBookRegistered == false)
+            {
+                Console.WriteLine("enter book title: ");
+                bookTitle = Console.ReadLine().Trim();
+                Console.WriteLine("enter book author: ");
+                bookAuthor = Console.ReadLine().Trim();
+                Console.WriteLine("enter book genre: ");
+                bookGenre = Console.ReadLine().Trim();
+                Console.WriteLine("enter available copies: ");
+                availableCopies = Convert.ToInt32(Console.ReadLine().Trim());
+
+
+                isBookRegistered = true;
+                Console.WriteLine("Book registered Successfully");
+            }
+            else
+            {
+                Console.WriteLine("cannot register again");
+            }
+        }
         static void Main(string[] args)
             {
                 bool exit = false;
@@ -316,7 +339,7 @@ namespace Library_Management_System
 
                     //Register Book
                     case 8:
-                        Console.WriteLine("");
+                        RegisterBook();
                         break;
 
                     //Generate Member ID
