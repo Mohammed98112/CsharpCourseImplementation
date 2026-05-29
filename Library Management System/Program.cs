@@ -199,6 +199,22 @@ namespace Library_Management_System
             }
         }
 
+        //generate member ID
+        public static string GenerateMemberID()
+        {
+            if (isMemberRegistered == false)
+            {
+                Console.WriteLine("please register first");
+                return "";
+            }
+            else
+            {
+                memberID = new Random().Next(1000, 9999).ToString();
+                Console.WriteLine("Generated Member ID: " + memberID);
+                return memberID;
+            }
+        }
+
 
         //Display Book Details
         public static void DisplayBookDetails()
@@ -363,7 +379,7 @@ namespace Library_Management_System
 
                     //Generate Member ID
                     case 9:
-                        Console.WriteLine("");
+                        GenerateMemberID();
                         break;
 
 
