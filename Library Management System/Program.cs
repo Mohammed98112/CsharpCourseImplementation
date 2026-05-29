@@ -198,6 +198,25 @@ namespace Library_Management_System
                 Console.WriteLine("cannot register again");
             }
         }
+
+
+        //Display Book Details
+        public static void DisplayBookDetails()
+        {
+            if (isBookRegistered == false)
+            {
+                Console.WriteLine("There is no information");
+            }
+            else
+            {
+                Console.WriteLine("bookTitle     : " + bookTitle.ToUpper());
+                Console.WriteLine("bookAuthor    : " + Convert.ToString(bookAuthor));
+                Console.WriteLine("bookGenre     : " + Convert.ToString(bookGenre));
+                Console.WriteLine("availableCopies       : " + availableCopies);
+            }
+        }
+
+
         static void Main(string[] args)
             {
                 bool exit = false;
@@ -286,7 +305,7 @@ namespace Library_Management_System
                         break;
 
 
-
+                        
                     //Return a Book
                     case 4:
                         ReturnBook(ref availableCopies);
@@ -350,7 +369,7 @@ namespace Library_Management_System
 
                     //Display Book Details
                     case 10:
-                        Console.WriteLine("");
+                        DisplayBookDetails();
                         break;
 
 
