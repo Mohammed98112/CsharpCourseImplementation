@@ -151,7 +151,7 @@ namespace Library_Management_System
             else
 
             {
-                return price * (1 - 0.1);
+                return price * (1 - 0.01);
             }
         }
 
@@ -263,6 +263,45 @@ namespace Library_Management_System
             {
                 return 15.0;
             }
+        }
+
+        //summary
+        public static void DisplaySessionSummary()
+        {
+            Console.WriteLine("=================================");
+            Console.WriteLine("        SESSION SUMMARY");
+            Console.WriteLine("=================================");
+
+            if (isMemberRegistered)
+            {
+                Console.WriteLine("Member Name      : " + memberName);
+                Console.WriteLine("Member ID        : " + memberID);
+                Console.WriteLine("Member Tier      : " + memberTier);
+            }
+            else
+            {
+                Console.WriteLine("No member registered.");
+            }
+
+            Console.WriteLine();
+
+            if (isBookRegistered)
+            {
+                Console.WriteLine("Book Title       : " + bookTitle);
+                Console.WriteLine("Book Author      : " + bookAuthor);
+                Console.WriteLine("Available Copies : " + availableCopies);
+            }
+            else
+            {
+                Console.WriteLine("No book registered.");
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Total Books Borrowed : " + totalBooksBorrowed);
+            Console.WriteLine("Total Fines Paid     : $" + totalFinesPaid);
+
+            Console.WriteLine("=================================");
         }
 
         static void Main(string[] args)
@@ -434,7 +473,8 @@ namespace Library_Management_System
 
                     //Session Summary
                     case 13:
-                        Console.WriteLine("");
+                  DisplaySessionSummary();
+
                         break;
                     //Exit
                     case 14:
