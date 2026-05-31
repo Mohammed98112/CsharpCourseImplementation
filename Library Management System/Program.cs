@@ -89,9 +89,6 @@ namespace Library_Management_System
 
 
 
-
-
-
             if (Search.ToLower() != bookTitle)
             {
                 return false;
@@ -232,6 +229,21 @@ namespace Library_Management_System
             }
         }
 
+        //update member email
+        public static void updatememberemail()
+        {
+
+            if (isMemberRegistered == false)
+                Console.WriteLine("please register first");
+
+            else
+            {
+                Console.Write("Enter new email: ");
+                memberEmail = Console.ReadLine().Trim();
+
+                Console.WriteLine("Email updated successfully.");
+            }
+        }
 
         static void Main(string[] args)
             {
@@ -397,7 +409,7 @@ namespace Library_Management_System
 
                     //Update Member Email
                     case 12:
-                        Console.WriteLine("");
+                        updatememberemail();
                         break;
 
                     //Session Summary
