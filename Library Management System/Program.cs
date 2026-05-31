@@ -140,16 +140,19 @@ namespace Library_Management_System
         //member discount
         public static double MemberDiscount(double price)
         {
-            double discount = 0;
             if (memberTier.ToLower() == "gold")
             {
-                discount = 0.2;
+                return price * (1 - 0.2);
             }
             else if (memberTier.ToLower() == "silver")
             {
-                discount = 0.1;
+                return price * (1 - 0.1);
             }
-            return price * (1 - discount);
+            else
+
+            {
+                return price * (1 - 0.1);
+            }
         }
 
         //Check borrowing eligibility
@@ -242,6 +245,23 @@ namespace Library_Management_System
                 memberEmail = Console.ReadLine().Trim();
 
                 Console.WriteLine("Email updated successfully.");
+            }
+        }
+
+        // Calculate Renewal Fee
+        public static double CalculateRenewalFee()
+        {
+            if (memberTier.ToLower() == "gold")
+            {
+                return 5.0;
+            }
+            else if (memberTier.ToLower() == "silver")
+            {
+                return 10.0;
+            }
+            else
+            {
+                return 15.0;
             }
         }
 
@@ -403,7 +423,7 @@ namespace Library_Management_System
 
                     //Calculate Renewal Fee
                     case 11:
-                        Console.WriteLine("");
+                        CalculateRenewalFee();
                         break;
 
 
