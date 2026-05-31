@@ -31,7 +31,10 @@ namespace Library_Management_System
         static double totalFinesPaid = 0;
 
 
-        //register new member
+
+        //All functions 
+
+        //case 0 register new member 
         public static void Newmember()
         {
             if (isMemberRegistered == false)
@@ -59,9 +62,7 @@ namespace Library_Management_System
             }
         }
 
-        //All functions 
-
-            //display member
+        //case 1 display member information
         public static void DisplayMember()
         {
 
@@ -84,6 +85,7 @@ namespace Library_Management_System
 
         }
 
+        //case 2 search book by title
         public static bool SearchBookByTitle(string Search)
         {
 
@@ -104,7 +106,7 @@ namespace Library_Management_System
 
         }
 
-        // Borrows a book using ref parameter function
+        // case 3 Borrows a book 
         public static void BorrowBook(ref int copies)
         {
             if (copies <= 0)
@@ -121,7 +123,7 @@ namespace Library_Management_System
 
 
 
-            // Returns a book using ref parameter
+            // case 4 Returns a book using ref parameter
            public static void ReturnBook(ref int copies)
             {
                 copies = Math.Min(100, copies + 1);
@@ -129,7 +131,7 @@ namespace Library_Management_System
                 Console.WriteLine("Book Returned Successfully!");
             }
 
-        //calculate late fine
+        // case 5 calculate late fine
         public static double CalculateLateFine(int lateDays)
         {
             double fine = lateDays * 0.5;
@@ -137,7 +139,7 @@ namespace Library_Management_System
             return fine;
         }
 
-        //member discount
+        // case 6 member discount
         public static double MemberDiscount(double price)
         {
             if (memberTier.ToLower() == "gold")
@@ -155,7 +157,7 @@ namespace Library_Management_System
             }
         }
 
-        //Check borrowing eligibility
+        // case 7 Check borrowing eligibility
         public static bool CheckBorrowingEligibility()
         {
             if (isMemberRegistered == false)
@@ -175,7 +177,7 @@ namespace Library_Management_System
             }
         }
 
-        //Register Book
+        // case 8 Register Book
         public static void RegisterBook()
         {
             if (isBookRegistered == false)
@@ -199,7 +201,7 @@ namespace Library_Management_System
             }
         }
 
-        //generate member ID
+        // case 9 generate member ID
         public static string GenerateMemberID()
         {
             if (isMemberRegistered == false)
@@ -216,7 +218,7 @@ namespace Library_Management_System
         }
 
 
-        //Display Book Details
+        // case 10 Display Book Details
         public static void DisplayBookDetails()
         {
             if (isBookRegistered == false)
@@ -232,7 +234,7 @@ namespace Library_Management_System
             }
         }
 
-        //update member email
+        // case 11 update member email
         public static void updatememberemail()
         {
 
@@ -248,7 +250,7 @@ namespace Library_Management_System
             }
         }
 
-        // Calculate Renewal Fee
+        // case 12 Calculate Renewal Fee
         public static double CalculateRenewalFee()
         {
             if (memberTier.ToLower() == "gold")
@@ -265,7 +267,7 @@ namespace Library_Management_System
             }
         }
 
-        //summary
+        // case 13 summary
         public static void DisplaySessionSummary()
         {
             Console.WriteLine("=================================");
@@ -303,6 +305,8 @@ namespace Library_Management_System
 
             Console.WriteLine("=================================");
         }
+
+        //case 14 exit..
 
         static void Main(string[] args)
             {
