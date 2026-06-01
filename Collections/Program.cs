@@ -68,6 +68,10 @@
 
                         temp();
                             break;
+                    //Student Score Board
+                    case 1:
+                        StudentScoreBoard();
+                            break;
         }
     }
 }
