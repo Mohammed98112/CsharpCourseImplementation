@@ -6,11 +6,11 @@ namespace Library_Management_System
     {
 
         // Member Information
-        static string memberName = "ahmed";
-        static string memberID = "1234";
-        static string memberEmail = "aaa@gmail.com";
-        static string membershipExpiry = "23/3/2026";
-        static string memberTier = "silver";
+        static string memberName = "";
+        static string memberID = "";
+        static string memberEmail = "";
+        static string membershipExpiry = "";
+        static string memberTier = "gold";
 
         // Member Status
         static bool isMemberRegistered = true;
@@ -401,7 +401,7 @@ namespace Library_Management_System
                         BorrowBook(ref availableCopies);
                         break;
 
-
+                        
 
                     //Return a Book
                     case 4:

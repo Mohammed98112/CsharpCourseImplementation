@@ -33,8 +33,9 @@
                 Array.Reverse(scores);
             }
         }
-        static void Main(string[] args)
-        {
+
+            static void Main(string[] args)
+            {
                 bool exit = false;
                 while (exit == false)
                 {
@@ -63,15 +64,87 @@
 
                     switch (choice)
                     {
+
                     //Temperature Log
                     case 0:
 
                         temp();
                             break;
+
+
+
                     //Student Score Board
                     case 1:
                         StudentScoreBoard();
                             break;
+
+
+                    //Product Price Finder
+                    case 2:
+
+                            break;
+
+
+                    //Race Finish Times
+                    case 3:
+
+                            break;
+
+
+
+                    //Classroom Grade Report 
+                    case 4:
+
+
+                            break;
+
+
+                    //Warehouse Inventory Check
+                    case 5:
+
+                            break;
+
+
+
+                    //Library Book Shelf Scanner
+                    case 6:
+                
+                            break;
+
+
+                    //Sales Performance Analyzer 
+                    case 7:
+                            break;
+
+
+                    //Flight Seat Allocation Display 
+                    case 8:
+                            break;
+
+                    //Hospital Patient Priority Queue
+                    case 9:
+                            break;
+
+
+                        //Exit
+                        case 10:
+                            exit = true;
+                            break;
+
+
+                        //wrong option
+                        default:
+                            Console.WriteLine("invalid option");
+                            break;
+
+                    }
+                    Console.WriteLine("press any key to continue...");
+                    Console.ReadKey();
+
+                }
+            }
         }
     }
-}
+
+
+    
