@@ -35,6 +35,11 @@
         }
         static void Main(string[] args)
         {
+                    //Temperature Log
+                    case 0:
+
+                        temp();
+                            break;
         }
     }
 }
