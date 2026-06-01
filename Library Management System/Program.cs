@@ -6,14 +6,14 @@ namespace Library_Management_System
     {
 
         // Member Information
-        static string memberName = "";
-        static string memberID = "";
-        static string memberEmail = "";
-        static string membershipExpiry = "";
-        static string memberTier = "";
+        static string memberName = "ahmed";
+        static string memberID = "1234";
+        static string memberEmail = "aaa@gmail.com";
+        static string membershipExpiry = "23/3/2026";
+        static string memberTier = "silver";
 
         // Member Status
-        static bool isMemberRegistered = false;
+        static bool isMemberRegistered = true;
 
         // Book Information
         static string bookTitle = "";
@@ -234,7 +234,29 @@ namespace Library_Management_System
             }
         }
 
-        // case 11 update member email
+     
+
+        // case 11 Calculate Renewal Fee
+        public static double CalculateRenewalFee()
+        {
+            double baseFee = 20.0;
+
+            if (memberTier.ToLower() == "gold")
+            {
+                return baseFee - (baseFee * 0.20); // 20% discount
+
+            }
+            else if (memberTier.ToLower() == "silver")
+            {
+                return baseFee - (baseFee * 0.10); // 10% discount
+            }
+            else
+            {
+                return baseFee;
+            }
+        }
+
+        // case 12 update member email
         public static void updatememberemail()
         {
 
@@ -250,23 +272,6 @@ namespace Library_Management_System
             }
         }
 
-        // case 12 Calculate Renewal Fee
-        public static double CalculateRenewalFee()
-        {
-            if (memberTier.ToLower() == "gold")
-            {
-                return 5.0;
-            }
-            else if (memberTier.ToLower() == "silver")
-            {
-                return 10.0;
-            }
-            else
-            {
-                return 15.0;
-            }
-        }
-
         // case 13 summary
         public static void DisplaySessionSummary()
         {
@@ -279,6 +284,7 @@ namespace Library_Management_System
                 Console.WriteLine("Member Name      : " + memberName);
                 Console.WriteLine("Member ID        : " + memberID);
                 Console.WriteLine("Member Tier      : " + memberTier);
+                Console.WriteLine("Member email      : " + memberEmail);
             }
             else
             {
@@ -309,56 +315,56 @@ namespace Library_Management_System
         //case 14 exit..
 
         static void Main(string[] args)
+        {
+            bool exit = false;
+            while (exit == false)
             {
-                bool exit = false;
-                while (exit == false)
+                Console.WriteLine("=================================");
+                Console.WriteLine(" Library Management System");
+                Console.WriteLine(" Welcome to the best Library");
+                Console.WriteLine("=================================");
+
+                Console.WriteLine("0. Register New member");
+                Console.WriteLine("1. Display Member Profile");
+                Console.WriteLine("2. Search Book by Title)");
+                Console.WriteLine("3. Borrow a Book");
+                Console.WriteLine("4. Return a Book");
+                Console.WriteLine("5. Calculate Late Fine");
+                Console.WriteLine("6. Apply Member Discount");
+                Console.WriteLine("7. Check Borrowing Eligibility");
+                Console.WriteLine("8. Register Book");
+                Console.WriteLine("9. Generate Member ID");
+                Console.WriteLine("10. Display Book Details");
+                Console.WriteLine("11. Calculate Renewal Fee");
+                Console.WriteLine("12. Update Member Email");
+                Console.WriteLine("13. Session Summary");
+                Console.WriteLine("14. exit");
+                Console.WriteLine("=================================");
+
+                int choice;
+                Console.WriteLine("enter your choice: ");
+                choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
                 {
-                    Console.WriteLine("=================================");
-                    Console.WriteLine(" Library Management System");
-                    Console.WriteLine(" Welcome to the best Library");
-                    Console.WriteLine("=================================");
-
-                    Console.WriteLine("0. Register New member");
-                    Console.WriteLine("1. Display Member Profile");
-                    Console.WriteLine("2. Search Book by Title)");
-                    Console.WriteLine("3. Borrow a Book");
-                    Console.WriteLine("4. Return a Book");
-                    Console.WriteLine("5. Calculate Late Fine");
-                    Console.WriteLine("6. Apply Member Discount");
-                    Console.WriteLine("7. Check Borrowing Eligibility");
-                    Console.WriteLine("8. Register Book");
-                    Console.WriteLine("9. Generate Member ID");
-                    Console.WriteLine("10. Display Book Details");
-                    Console.WriteLine("11. Calculate Renewal Fee");
-                    Console.WriteLine("12. Update Member Email");
-                    Console.WriteLine("13. Session Summary");
-                    Console.WriteLine("14. exit");
-                    Console.WriteLine("=================================");
-
-                    int choice;
-                    Console.WriteLine("enter your choice: ");
-                    choice = Convert.ToInt32(Console.ReadLine());
-
-                    switch (choice)
-                    {
 
 
 
-                        //Register New member
-                        case 0:
-                            Newmember();
+                    //Register New member
+                    case 0:
+                        Newmember();
 
 
-                            break;
+                        break;
 
 
 
-                        //Display Member Profile
-                        case 1:
+                    //Display Member Profile
+                    case 1:
 
-                            DisplayMember();
+                        DisplayMember();
 
-                            break;
+                        break;
 
 
                     //Search Book by Title
@@ -396,7 +402,7 @@ namespace Library_Management_System
                         break;
 
 
-                        
+
                     //Return a Book
                     case 4:
                         ReturnBook(ref availableCopies);
@@ -466,7 +472,11 @@ namespace Library_Management_System
 
                     //Calculate Renewal Fee
                     case 11:
-                        CalculateRenewalFee();
+
+                        Console.WriteLine($"renawel fee is: {CalculateRenewalFee()}");
+
+
+
                         break;
 
 
@@ -477,7 +487,7 @@ namespace Library_Management_System
 
                     //Session Summary
                     case 13:
-                  DisplaySessionSummary();
+                        DisplaySessionSummary();
 
                         break;
                     //Exit
@@ -494,8 +504,8 @@ namespace Library_Management_System
                 }
                 Console.WriteLine("press any key to continue...");
                 Console.ReadKey();
-            
-            }
+
+            } 
         }
     }
 }
