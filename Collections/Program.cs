@@ -148,9 +148,11 @@ namespace Collections
         public static void WarehouseInventoryCheck()
         {
             int[] grades = new int[] { 1111, 244, 621, 500, 484, 954, 1200, 3000 , };
-
+              
 
         }
+
+  
 
 
         static void Main(string[] args)
