@@ -30,6 +30,19 @@
 
 
         }
+        public static void  Temp()
+        {
+
+            List<int> numbers = new List<int>();
+            numbers.AddRange(new int[] { 88, 44, 66, 65, 20, 85, 10 });
+
+            Console.WriteLine("All elements:");
+            foreach (int number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+            Console.WriteLine("number of all elements is: " + numbers.Count);
+        }
     }
 
 
