@@ -19,6 +19,7 @@
 
         }
 
+        //Student Score Board case 1
         public static void StudentScoreBoard()
         {
 
@@ -34,13 +35,14 @@
             }
         }
 
+        //Product Price Finder case 2
         public static void prodectPrice()
         {
 
             double[] price = new double[] { 1.8, 2.77, 2.1, 7.65, 3.3};
 
 
-            int index = Array.IndexOf(price, 5);
+            int index = Array.IndexOf(price, 21);
             if (index == -1)
             {
 
@@ -57,7 +59,32 @@
 
         }
 
+        //Race Finish Times case 3
+        public static void RaceFinishTimes()
+        {
 
+            int[] finishTimes = new int[] { 77, 22, 41, 10, 99, 54, 61, 84 };
+
+            Console.WriteLine(" the orignal finish times:");
+
+            foreach (int i in finishTimes)
+            {
+
+                Console.WriteLine(i);
+
+            }
+
+            Array.Sort(finishTimes);
+            Console.WriteLine(" the sorted finish times:");
+
+            foreach (int i in finishTimes)
+            {
+
+                Console.WriteLine(i);
+
+            }
+
+        }
 
         static void Main(string[] args)
             {
@@ -112,7 +139,7 @@
 
                     //Race Finish Times
                     case 3:
-
+                        RaceFinishTimes();
                             break;
 
 
