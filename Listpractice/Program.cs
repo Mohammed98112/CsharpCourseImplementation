@@ -43,6 +43,18 @@
             }
             Console.WriteLine("number of all elements is: " + numbers.Count);
         }
+        public static void scores()
+        {
+
+            List<int> scores = new List<int>();
+            scores.AddRange(new int[] { 90, 44, 66, 65, 20, 85, });
+            
+
+            Console.WriteLine("All scores :");
+            foreach (int number in scores)
+            {
+                Console.WriteLine(number);
+                
     }
 
 
