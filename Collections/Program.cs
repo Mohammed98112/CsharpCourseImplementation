@@ -1,4 +1,7 @@
-﻿namespace Collections
+﻿using System.Diagnostics;
+using System.IO.Pipelines;
+
+namespace Collections
 {
     internal class Program
     {
@@ -57,6 +60,7 @@
 
             }
 
+
         }
 
         //Race Finish Times case 3
@@ -85,6 +89,30 @@
             }
 
         }
+
+
+        //Classroom Grade Report case 4
+        public static void ClassroomGradeReport()
+        { 
+
+
+            int[] grades = new int[] { 99, 100, 66, 50, 35, 22, 14, 86, 44, 89 };
+
+            Array.Sort(grades);
+            Array.Reverse(grades);
+
+           for (int i = 0; i < grades.Length; i++)
+            {
+
+                Console.WriteLine($"Rank {i + 1}: {grades[i]}");
+
+            }
+
+        }
+
+        
+
+
 
         static void Main(string[] args)
             {
@@ -147,7 +175,7 @@
                     //Classroom Grade Report 
                     case 4:
 
-
+                        ClassroomGradeReport();
                             break;
 
 
