@@ -57,6 +57,10 @@
                 
     }
 
+            scores.Reverse();
+            foreach (int number in scores)
+            {
+                Console.WriteLine("reverse order: "+number);
 
 
 }  
