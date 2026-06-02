@@ -34,7 +34,32 @@
             }
         }
 
-            static void Main(string[] args)
+        public static void prodectPrice()
+        {
+
+            double[] price = new double[] { 1.8, 2.77, 2.1, 7.65, 3.3};
+
+
+            int index = Array.IndexOf(price, 5);
+            if (index == -1)
+            {
+
+                Console.WriteLine("item not found in Array");
+
+            }
+
+            else
+            {
+
+                Console.WriteLine("item  found in Array: " + index );
+
+            }
+
+        }
+
+
+
+        static void Main(string[] args)
             {
                 bool exit = false;
                 while (exit == false)
@@ -81,7 +106,7 @@
 
                     //Product Price Finder
                     case 2:
-
+                        prodectPrice();
                             break;
 
 
