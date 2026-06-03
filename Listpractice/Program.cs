@@ -1,4 +1,7 @@
-﻿namespace Listpractice
+﻿using System.Diagnostics;
+using System.Numerics;
+
+namespace Listpractice
 {
     internal class Program
     {
@@ -12,7 +15,7 @@
 
             Console.WriteLine("0. Temperature Log");
             Console.WriteLine("1. Student Score Board");
-            Console.WriteLine("2. Product Price Finder)");
+            Console.WriteLine("2. Product Price Finder");
             Console.WriteLine("3. Race Finish Times");
             Console.WriteLine("4. Classroom Grade Report ");
             Console.WriteLine("5. Warehouse Inventory Check");
@@ -28,21 +31,22 @@
             return Convert.ToInt32(Console.ReadLine());
 
 
-
         }
 
         public static void  Temp()
         {
 
-            List<int> numbers = new List<int>();
-            numbers.AddRange(new int[] { 88, 44, 66, 65, 20, 85, 10 });
+            List<double> tempreture = new List<double>();
+            tempreture.AddRange(new double[] { 34.2,35.1,36.6,33.1,32.9,34,36 });
 
-            Console.WriteLine("All elements:");
-            foreach (int number in numbers)
+            for (int i = 0; i < tempreture.Count; i++)
+
             {
-                Console.WriteLine(number);
+                Console.WriteLine($"day {i+1} tempreture {tempreture[i]} C");
             }
-            Console.WriteLine("number of all elements is: " + numbers.Count);
+
+            Console.WriteLine("total number of reading:" + tempreture.Count );
+           
         }
 
         public static void scores()
@@ -70,6 +74,89 @@
            
         }
 
+
+
+
+        public static void ProductPriceFinder()
+        {
+
+            List<double> prices = new List<double>();
+            prices.AddRange(new double[] { 90.5, 44.7, 66.11, 65.8, 20.3 });
+
+            for (int i = 0; i < prices.Count; i++)
+            {
+
+                Console.WriteLine($"product {i + 1}  {prices[i]}");
+            }
+
+            double search = 44.7;
+            int index = prices.IndexOf (search);
+
+            if (index != -1)
+            {
+                Console.WriteLine($"price found at index {index}");
+                
+            }
+
+            else
+            {
+
+                Console.WriteLine("price not found");
+                
+                
+            }
+
+
+        }
+
+        //Race Finish Times case 3
+        public static void RaceFinishTimes()
+        {
+
+            List<int> finishTimes = new List<int>();
+            finishTimes.AddRange(new int[] { 90, 44, 66, 65, 20, 85, });
+
+            Console.WriteLine(" the orignal finish times:");
+
+            foreach (int i in finishTimes)
+            {
+
+                Console.WriteLine(i);
+
+            }
+
+            finishTimes.Sort();
+            Console.WriteLine(" the sorted finish times:");
+
+            foreach (int i in finishTimes)
+            {
+
+                Console.WriteLine(i);
+
+            }
+
+        }
+
+        //Classroom Grade Report case 4
+        public static void ClassroomGradeReport()
+        {
+
+
+            List<int> grades = new List<int>();
+            grades.AddRange(new int[] { 90, 44, 66, 65, 20, 85, });
+
+            grades.Sort();
+            grades.Reverse();
+
+            for (int i = 0; i < grades.Count; i++)
+            {
+
+                Console.WriteLine($"Rank {i + 1}: {grades[i]}");
+
+            }
+
+        }
+
         static void Main(string[] args)
         {
             bool exit = false;
@@ -95,11 +182,13 @@
 
                     //Product Price Finder
                     case 2:
+                        ProductPriceFinder();
                         break;
 
 
                     //Race Finish Times
                     case 3:
+                        RaceFinishTimes();
                         break;
 
 
