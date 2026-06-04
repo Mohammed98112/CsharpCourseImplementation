@@ -1,26 +1,86 @@
-﻿namespace queue_and__stack
+﻿using static System.Net.WebRequestMethods;
+
+namespace queue_and__stack
 {
     internal class Program
     {
 
+        //Problem 1: Browser History Tracker
+        public static void problrm1()
+        {
+
+            Stack<string> browserHistory = new Stack<string>();
+
+            browserHistory.Push("https://www.google.com");
+            browserHistory.Push("https://www.youtube.com");
+            browserHistory.Push("https://github.com/Mohammed98112/CsharpCourseImplementation");
+            browserHistory.Push("https://chatgpt.com/");
+            browserHistory.Push("https://www.geeksforgeeks.org/");
+
+            Console.WriteLine("browsing History: ");
+
+            foreach (string page in browserHistory)
+            {
+                Console.WriteLine(page);
+
+            }
+
+            Console.WriteLine("");
+
+            var PageDisplay = browserHistory.Peek();
+            Console.WriteLine($"\the page is after peek: {PageDisplay }");
+
+            Console.WriteLine("");
+
+            var removedpage = browserHistory.Pop();
+            Console.WriteLine($"\nPopped page: {removedpage}");
+
+            Console.WriteLine("");
+
+            var removedpage2 = browserHistory.Pop();
+            Console.WriteLine($"\nPopped page: {removedpage2}");
+
+            Console.WriteLine("");
+
+
+            Console.WriteLine("browsing History after popped: ");
+
+            foreach (string pages in browserHistory)
+            {
+                Console.WriteLine(pages);
+
+            }
+
+            Console.WriteLine("");
+
+            string searchUrl = "https://chatgpt.com";
+            Console.WriteLine("Checking URL:");
+            Console.WriteLine(searchUrl + " exists: " +  browserHistory.Contains(searchUrl));
+
+            Console.WriteLine("");
+
+            Console.WriteLine("\nTotal Pages Remaining: " + browserHistory.Count);
+        }
+
+        
 
         public static int mainmenue()
         {
 
             Console.WriteLine("=================================");
-            Console.WriteLine(" Arrays Practice Task Sheet");
+            Console.WriteLine(" QUEUE and STACK Practice Task Sheet");
             Console.WriteLine("=================================");
 
-            Console.WriteLine("0. Temperature Log");
-            Console.WriteLine("1. Student Score Board");
-            Console.WriteLine("2. Product Price Finder");
-            Console.WriteLine("3. Race Finish Times");
-            Console.WriteLine("4. Classroom Grade Report ");
-            Console.WriteLine("5. Warehouse Inventory Check");
-            Console.WriteLine("6. Library Book Shelf Scanner");
-            Console.WriteLine("7. Sales Performance Analyzer");
-            Console.WriteLine("8. Flight Seat Allocation Display");
-            Console.WriteLine("9. Hospital Patient Priority Queue");
+            Console.WriteLine("0. Problem 1: Browser History Tracker");
+            Console.WriteLine("1. Problem 2: Hotel Check-In Queue");
+            Console.WriteLine("2. Problem 3: Text Editor Undo System");
+            Console.WriteLine("3. Problem 4: Hospital Emergency Room Triage");
+            Console.WriteLine("4. Problem 5: Parenthesis Validator ");
+            Console.WriteLine("5. Problem 6: Print Spooler with Priority Re-Insertion");
+            Console.WriteLine("6. Problem 7: Reverse a Sentence Word by Word");
+            Console.WriteLine("7. Problem 8: Multi-Level Undo with Redo");
+            Console.WriteLine("8. Problem 9: Ticket Counter Simulation");
+            Console.WriteLine("9. Problem 10: Order Processing Pipeline with Statistics ");
             Console.WriteLine("10. exit");
             Console.WriteLine("=================================");
 
@@ -46,7 +106,7 @@
 
                     //Problem 1: Browser History Tracker
                     case 0:
-                        
+                        problrm1();
                         break;
 
 
