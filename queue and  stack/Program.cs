@@ -62,7 +62,67 @@ namespace queue_and__stack
             Console.WriteLine("\nTotal Pages Remaining: " + browserHistory.Count);
         }
 
-        
+        //Problem 2: Hotel Check-In Queue
+        public static void problrm2()
+        {
+
+            Queue<string> checkInQueue = new Queue<string>();
+
+            checkInQueue.Enqueue("Ahmed");
+            checkInQueue.Enqueue("JohnWick");
+            checkInQueue.Enqueue("Messi");
+            checkInQueue.Enqueue("davinci");
+            checkInQueue.Enqueue("MR.Bean");
+
+
+            Console.WriteLine("");
+
+            Console.WriteLine("guest Name: ");
+
+            foreach (string guest in checkInQueue)
+            {
+                Console.WriteLine(guest);
+
+            }
+
+            Console.WriteLine("");
+
+            var GuestDisplay = checkInQueue.Peek();
+            Console.WriteLine($"guest peek: {GuestDisplay}");
+
+            Console.WriteLine("");
+
+            string removedGuest = checkInQueue.Dequeue();
+            Console.WriteLine($"removed Guest: {removedGuest}");
+
+            Console.WriteLine("");
+
+            string removedGuest2 = checkInQueue.Dequeue();
+            Console.WriteLine($"Removed Guest: {removedGuest2}");
+
+            Console.WriteLine("");
+
+
+            Console.WriteLine("The remaining guests after dequeue: ");
+
+            foreach (string guests in checkInQueue)
+            {
+                Console.WriteLine(guests);
+
+            }
+
+            Console.WriteLine("");
+
+            string searchUrl = "Messi";
+            Console.WriteLine("Checking Guest:");
+            Console.WriteLine(searchUrl + " exists: " + checkInQueue.Contains(searchUrl));
+
+
+            Console.WriteLine("");
+
+            Console.WriteLine("\nTotal Pages Remaining: " + checkInQueue.Count);
+
+        }
 
         public static int mainmenue()
         {
@@ -113,7 +173,7 @@ namespace queue_and__stack
 
                     //Problem 2: Hotel Check-In Queue 
                     case 1:
-                        
+                        problrm2();
                         break;
 
 
