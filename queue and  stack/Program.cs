@@ -1,4 +1,5 @@
-﻿using static System.Net.WebRequestMethods;
+﻿using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
 
 namespace queue_and__stack
 {
@@ -124,6 +125,103 @@ namespace queue_and__stack
 
         }
 
+
+        //Problem 3: Text Editor Undo System
+        public static void problem3()
+        {
+
+
+            Stack<string> undoStack = new Stack<string>();
+            Stack<string> tempStack = new Stack<string>();
+
+
+            undoStack.Push("Remove: Name");
+            undoStack.Push("ADD: Number");
+            undoStack.Push("copy: City");
+            undoStack.Push("Rename: Contry");
+            undoStack.Push("ADD: Guest");
+            undoStack.Push("Delete: Space");
+            undoStack.Push("Clear: data");
+
+            Console.WriteLine("");
+
+            Console.WriteLine("browsing History: ");
+
+            foreach (string undo in undoStack)
+            {
+                Console.WriteLine(undo);
+
+            }
+
+            Console.WriteLine("");
+
+            var ActionPeek = undoStack.Peek();
+            Console.WriteLine($"action peek: {ActionPeek}");
+
+            Console.WriteLine("");
+
+            var removedAction = undoStack.Pop();
+            Console.WriteLine($"\nPopped page: {removedAction}");
+
+            Console.WriteLine("");
+
+            var removedAction2 = undoStack.Pop();
+            Console.WriteLine($"\nPopped page: {removedAction2}");
+
+            Console.WriteLine("");
+
+
+            Console.WriteLine("Actions after popped: ");
+
+            foreach (string Action in undoStack)
+            {
+                Console.WriteLine(Action);
+
+            }
+
+            Console.WriteLine("");
+
+            string actionToRemove = "Rename: Contry";
+
+            Console.WriteLine("\nBefore Selective Undo");
+            foreach (string action in undoStack)
+            {
+                Console.WriteLine(action);
+            }
+
+            while (undoStack.Count > 0)
+            {
+                string currentAction = undoStack.Pop();
+
+                if (currentAction == actionToRemove)
+                {
+                    Console.WriteLine("\nSelective Undo Removed: " + currentAction);
+                    break;
+                }
+
+                tempStack.Push(currentAction);
+            }
+
+            while (tempStack.Count > 0)
+            {
+                undoStack.Push(tempStack.Pop());
+            }
+
+            Console.WriteLine("\nAfter Selective Undo");
+            foreach (string action in undoStack)
+            {
+                Console.WriteLine(action);
+            }
+
+            Console.WriteLine("");
+
+            Console.WriteLine("\nTotal Remaining Actions");
+            Console.WriteLine(undoStack.Count);
+
+
+
+        }
+
         public static int mainmenue()
         {
 
@@ -179,7 +277,7 @@ namespace queue_and__stack
 
                     //Problem 3: Text Editor Undo System 
                     case 2:
-                        
+                        problem3();
                         break;
 
 
