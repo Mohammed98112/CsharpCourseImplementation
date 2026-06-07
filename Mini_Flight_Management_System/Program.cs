@@ -4,9 +4,46 @@ namespace Mini_Flight_Management_System
 {
     internal class Program
     {
-        //case 1 varibales
-        static List<string> passengerNames = new List<string>();
-        static List<string> ticketNumbers = new List<string>();
+        //varibales
+        static List<string> passengerNames = new List<string>()
+{
+    "Mohammed",
+    "Ahmed",
+    "Shaheen",
+    "Aihem",
+    "Fahad"
+};
+        static List<string> ticketNumbers = new List<string>()
+{
+    "TKT-001",
+    "TKT-002",
+    "TKT-003",
+    "TKT-004",
+    "TKT-005"
+};
+        static string[] flightNumbers = new string[]
+            {
+    "200",
+    "201",
+    "202",
+    "203",
+    "204",
+    "205"
+};
+        static List<string> availableDates = new List<string>()
+            {
+    "10-Jun-2026",
+    "12-Jun-2026",
+    "15-Jun-2026",
+    "18-Jun-2026"
+};
+        static Dictionary<string, string> bookingRecord = new Dictionary<string, string>();
+        static Queue<string> checkedInQueue = new Queue<string>();
+        static Stack<string> boardingStack = new Stack<string>();
+        static List<string> cancelledTickets = new List<string>();
+        static Dictionary<string, string> passengerSeatMap = new Dictionary<string, string>();
+        static Queue<string> waitlistQueue = new Queue<string>();
+        string status = "Active";
         //Main menu
         public static int mainmenue()
         {
@@ -81,18 +118,63 @@ namespace Mini_Flight_Management_System
             ticketNumbers.Add(TicketID);
 
 
-            // Req 5: Add passenger name and ticket ID to lists
+            // Req 5: Display 
             Console.WriteLine("Passenger registered successfully!");
             Console.WriteLine("Passenger Name: " + Name);
             Console.WriteLine("Ticket ID: " + TicketID);
         }
 
-
-
         //case 2) View All Passengers
+        public static void ViewAllPassengers()
+        {
+            //req 1) Check if passengerNames is empty
+
+            if (passengerNames.Count == 0)
+            {
+                Console.WriteLine("No passengers registered yet.");
+
+                return;
+            }
+
+            //req 2) Display a formatted table header:
+
+            Console.WriteLine("No. | Passenger Name | Ticket ID | Status");
+            Console.WriteLine("========================================");
+
+
+            //req 3 + 4) loop + check
+            for (int i = 0; i < passengerNames.Count; i++)
+            {
+                string status = "Active";
+
+                if (cancelledTickets.Contains(ticketNumbers[i]))
+                {
+
+                    status = "CANCELLED";
+
+
+                }
+
+
+
+                Console.WriteLine((i + 1) + " | " + passengerNames[i] + " | " + ticketNumbers[i] + " | " + status);
+
+
+
+            }
+
+
+            // Req 5: Total passenger
+            Console.WriteLine("------------------------------------------------");
+            Console.WriteLine("Total Passengers: " + passengerNames.Count);
+        }
+
 
 
         //case 3) Book a Flight Ticket
+
+
+
 
 
         //case 4) View Booking Details
@@ -136,6 +218,7 @@ namespace Mini_Flight_Management_System
 
                     //case 2) View All Passengers
                     case 2:
+                        ViewAllPassengers();
                         break;
 
 
