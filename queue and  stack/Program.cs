@@ -1,6 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using static System.Net.WebRequestMethods;
-
+﻿
 namespace queue_and__stack
 {
     internal class Program

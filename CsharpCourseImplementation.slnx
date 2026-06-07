@@ -3,6 +3,7 @@
   <Project Path="HotelManagementSystem/HotelManagementSystem.csproj" Id="520b7037-ab20-4c3d-a6b8-c6ac7f0a0a1d" />
   <Project Path="Library Management System/Library Management System.csproj" Id="b63defa1-f6ae-408a-a1c3-926d13665a3f" />
   <Project Path="Listpractice/Listpractice.csproj" Id="88fc81b8-90fd-4380-9776-c49a6d8c3e70" />
+  <Project Path="Mini_Flight_Management_System/Mini_Flight_Management_System.csproj" Id="94b3fd81-a2a1-497a-a230-00ac9c8ecf54" />
   <Project Path="Project 1/Project 1.csproj" />
   <Project Path="queue and  stack/queue and  stack.csproj" Id="bf26d85c-accd-4265-b6d9-8afc51215dea" />
 </Solution>
