@@ -172,7 +172,112 @@ namespace Mini_Flight_Management_System
 
 
         //case 3) Book a Flight Ticket
+        public static void BookFlightTicket()
+        {
+            Console.WriteLine("=== Book a Flight Ticket ===");
 
+            // Req 1: Prompt for a ticket ID
+
+            Console.WriteLine("enter Ticket ID: ");
+            string TicketID = Console.ReadLine();
+
+            // Req 1: Validate it exists in ticketNumbers
+            if (ticketNumbers.Contains(TicketID))
+            {
+
+                Console.WriteLine("the tecket ID is Invalid");
+                return;
+            }
+
+            // Req 1: Validate it is not in cancelledTickets
+
+            if (cancelledTickets.Contains(TicketID))
+            {
+
+                Console.WriteLine("the tecket  is cancelled");
+                return;
+
+            }
+
+            // Req 2: Check if the ticket is already in bookingRecord
+
+            if (bookingRecord.ContainsKey(TicketID))
+            {
+                
+                Console.WriteLine("the ticket already has a booking ");
+                return;
+            
+            
+            }
+
+            // Req 3 :  Display all available flight numbers 
+
+            for (int i = 0;i < flightNumbers.Length;i++)
+            {
+
+                Console.WriteLine($"flightNumber{i}. {flightNumbers[i]}");
+
+            }
+
+            // Req 4 :  Prompt the user to select a flight by entering
+
+            Console.WriteLine("select flight number: ");
+            int flight = Convert.ToInt32(Console.ReadLine()); 
+
+
+            if (flight <0 && flight >=flightNumbers.Length)
+            {
+
+                Console.WriteLine("it is out of range");
+
+            }
+            else
+            {
+
+                Console.WriteLine("It is within range.");
+
+            }
+
+            //req 5: Display all available dates
+
+            Console.WriteLine($"Availables dates: ");
+            for (int i = 0; i < availableDates.Count;i++)
+            {
+
+                Console.WriteLine(i + " " + availableDates[i]);
+
+            }
+
+
+
+            //req 5: . Prompt the user to select a date by index. Validate input.
+
+            Console.Write("Select date index: ");
+            int date = Convert.ToInt32(Console.ReadLine());
+
+            if (date < 0 || date >= availableDates.Count)
+            {
+                Console.WriteLine("wrong option");
+
+                return;
+            }
+
+            //req 6 : Display all available dates
+
+            string booking = flightNumbers[flight] + "|" + availableDates[date];
+            bookingRecord.Add(TicketID, booking);
+
+            //req 7 :  Display a booking confirmation
+            int passenger = ticketNumbers.IndexOf(TicketID);
+            Console.WriteLine("Booking Confirmed");
+            Console.WriteLine($"Ticket ID: {TicketID}");
+            Console.WriteLine($"Passenger Name: {passengerNames[passenger]}");
+            Console.WriteLine("Flight: " + flightNumbers[flight]);
+            Console.WriteLine("Date: " + availableDates[date]);
+
+
+
+        }
 
 
 
@@ -224,7 +329,7 @@ namespace Mini_Flight_Management_System
 
                     //case 3) Book a Flight Ticket
                     case 3:
-
+                        BookFlightTicket();
                         break;
 
 
