@@ -7,11 +7,12 @@ namespace Mini_Flight_Management_System
         //varibales
         static List<string> passengerNames = new List<string>()
 {
+    "Fahad",
     "Mohammed",
     "Ahmed",
     "Shaheen",
-    "Aihem",
-    "Fahad"
+    "Aihem"
+
 };
         static List<string> ticketNumbers = new List<string>()
 {
@@ -21,7 +22,7 @@ namespace Mini_Flight_Management_System
     "TKT-004",
     "TKT-005"
 };
-        static string[] flightNumbers = new string[]
+        static string[] flightNumbers = new string[] 
             {
     "200",
     "201",
@@ -77,34 +78,36 @@ namespace Mini_Flight_Management_System
 
         public static void RegisterNewPassenger()
         {
+            Console.WriteLine("=== Register New Passenger ===");
 
             // Req 1) Prompt the clerk to enter the new passenger's full name.
             Console.WriteLine("enter your Full Name: ");
             string Name = Console.ReadLine();
-            
+
 
             // Req 2) Validate that the name is not empty 
-            
-            if (Name == "")
+
+            if (Name == "") // Check if the entered name is empty
+
             {
                 Console.WriteLine("Error: The name cannot be empty -_-");
                 return;
             }
 
             // Req 2) Validate that the name does not already exist 
-           
-                if (passengerNames.Contains(Name) == true)
-                {
-                    Console.WriteLine("The Name is already exists");
-                return;
-                }
 
-                else
-                {
+            if (passengerNames.Contains(Name) == true) // Check if the passenger name already exists in the passengerNames list
+            {
+                Console.WriteLine("The Name is already exists");
+                return;
+            }
+
+            else
+            {
 
                 Console.WriteLine("The Name was successfully added.....");
 
-                }
+            }
 
             Console.WriteLine("");
 
@@ -127,6 +130,9 @@ namespace Mini_Flight_Management_System
         //case 2) View All Passengers
         public static void ViewAllPassengers()
         {
+            Console.WriteLine("=== View All Passengers ===");
+
+
             //req 1) Check if passengerNames is empty
 
             if (passengerNames.Count == 0)
@@ -145,19 +151,21 @@ namespace Mini_Flight_Management_System
             //req 3 + 4) loop + check
             for (int i = 0; i < passengerNames.Count; i++)
             {
-                string status = "Active";
+                string status = "Active";  //defualt status for each passenger
 
                 if (cancelledTickets.Contains(ticketNumbers[i]))
                 {
 
-                    status = "CANCELLED";
+                    status = "CANCELLED"; //if ticket number inside cancelled tickets = cancel,,, otherwise Active
 
 
                 }
 
 
 
-                Console.WriteLine((i + 1) + " | " + passengerNames[i] + " | " + ticketNumbers[i] + " | " + status);
+                Console.WriteLine((i + 1) + " | " + passengerNames[i] + " | " + ticketNumbers[i] + " | " + status); // Display passenger details in a formatted row
+                                                                                                                    // including serial number, name, ticket ID, and status
+
 
 
 
@@ -168,8 +176,6 @@ namespace Mini_Flight_Management_System
             Console.WriteLine("------------------------------------------------");
             Console.WriteLine("Total Passengers: " + passengerNames.Count);
         }
-
-
 
         //case 3) Book a Flight Ticket
         public static void BookFlightTicket()
@@ -182,7 +188,8 @@ namespace Mini_Flight_Management_System
             string TicketID = Console.ReadLine();
 
             // Req 1: Validate it exists in ticketNumbers
-            if (ticketNumbers.Contains(TicketID))
+            if (ticketNumbers.Contains(TicketID) == true) // Check if the TicketID does NOT exist in the ticketNumbers list
+
             {
 
                 Console.WriteLine("the tecket ID is Invalid");
@@ -191,41 +198,44 @@ namespace Mini_Flight_Management_System
 
             // Req 1: Validate it is not in cancelledTickets
 
-            if (cancelledTickets.Contains(TicketID))
+            if (cancelledTickets.Contains(TicketID) == true) // Check if the TicketID exists in the cancelledTickets list
+
             {
 
                 Console.WriteLine("the tecket  is cancelled");
                 return;
-
             }
 
             // Req 2: Check if the ticket is already in bookingRecord
 
-            if (bookingRecord.ContainsKey(TicketID))
+            if (bookingRecord.ContainsKey(TicketID)) // Check if the TicketID already exists in the bookingRecord dictionary
+
             {
-                
+
                 Console.WriteLine("the ticket already has a booking ");
                 return;
-            
-            
+
+
             }
 
             // Req 3 :  Display all available flight numbers 
 
-            for (int i = 0;i < flightNumbers.Length;i++)
+            for (int i = 0; i < flightNumbers.Length; i++) // Loop through all available flight numbers
+                                                           // and display them with index numbers starting from 1
             {
 
-                Console.WriteLine($"flightNumber{i}. {flightNumbers[i]}");
+                Console.WriteLine($"{i + 1}. flightNumber: {flightNumbers[i]}");
 
             }
 
             // Req 4 :  Prompt the user to select a flight by entering
 
             Console.WriteLine("select flight number: ");
-            int flight = Convert.ToInt32(Console.ReadLine()); 
+            int flight = Convert.ToInt32(Console.ReadLine());
 
 
-            if (flight <0 && flight >=flightNumbers.Length)
+            if (flight < 0 || flight >= flightNumbers.Length) //// Check if the selected flight index is invalid (less than 0 or greater than available flights)
+
             {
 
                 Console.WriteLine("it is out of range");
@@ -234,55 +244,112 @@ namespace Mini_Flight_Management_System
             else
             {
 
-                Console.WriteLine("It is within range.");
+                //req 5: Display all available dates
 
+                Console.WriteLine($"Availables dates: ");
+                for (int i = 0; i < availableDates.Count; i++)  // Loop through the availableDates list and print each date with its index
+                {
+
+                    Console.WriteLine(i + 1 + " " + availableDates[i]);
+
+                }
+
+
+
+                //req 5: . Prompt the user to select a date by index. Validate input.
+
+                Console.Write("Select date index: ");
+                int date = Convert.ToInt32(Console.ReadLine());
+
+                if (date > 0 || date <= availableDates.Count)  // Validate that the entered index is within the valid range of availableDates list
+                {
+                    //req 6 : Display all available dates
+
+                    string booking = flightNumbers[flight] + "|" + availableDates[date]; //Create booking string in format "FlightNumber|Date" as a value
+                                                                                         //and store it in the bookingRecord dictionary using TicketID as the key
+
+                    bookingRecord.Add(TicketID, booking);
+
+                    //req 7 :  Display a booking confirmation
+                    int passenger = ticketNumbers.IndexOf(TicketID); //// Find the passenger index based on the TicketID in the ticketNumbers list
+                    Console.WriteLine("Booking Confirmed"); // Display booking confirmation details
+                    Console.Write("");
+                    Console.WriteLine($"Ticket ID: {TicketID}"); // Display ticket ID
+                    Console.Write("");
+                    Console.WriteLine($"Passenger Name: {passengerNames[passenger]}"); // Display passenger name using the found index
+                    Console.Write("");
+                    Console.WriteLine("Flight: " + flightNumbers[flight - 1]); // Display selected flight using flight index
+                    Console.Write("");
+                    Console.WriteLine("Date: " + availableDates[date - 1]); // Display selected date using date index
+
+
+
+                }
+                else
+                {
+
+                    Console.Write("wrong option ");
+
+
+                }
             }
 
-            //req 5: Display all available dates
-
-            Console.WriteLine($"Availables dates: ");
-            for (int i = 0; i < availableDates.Count;i++)
-            {
-
-                Console.WriteLine(i + " " + availableDates[i]);
-
-            }
 
 
-
-            //req 5: . Prompt the user to select a date by index. Validate input.
-
-            Console.Write("Select date index: ");
-            int date = Convert.ToInt32(Console.ReadLine());
-
-            if (date < 0 || date >= availableDates.Count)
-            {
-                Console.WriteLine("wrong option");
-
-                return;
-            }
-
-            //req 6 : Display all available dates
-
-            string booking = flightNumbers[flight] + "|" + availableDates[date];
-            bookingRecord.Add(TicketID, booking);
-
-            //req 7 :  Display a booking confirmation
-            int passenger = ticketNumbers.IndexOf(TicketID);
-            Console.WriteLine("Booking Confirmed");
-            Console.WriteLine($"Ticket ID: {TicketID}");
-            Console.WriteLine($"Passenger Name: {passengerNames[passenger]}");
-            Console.WriteLine("Flight: " + flightNumbers[flight]);
-            Console.WriteLine("Date: " + availableDates[date]);
 
 
 
         }
 
+        //case 4) View Booking Details 
+        public static void ViewBookingDetails()
+        {
+
+            Console.WriteLine("=== View Booking Details ===");
+
+            // Req 1: Prompt for a ticket ID
+
+            Console.WriteLine("enter Ticket ID: ");
+            string TicketID = Console.ReadLine();
+
+            if (ticketNumbers.Contains(TicketID) == false)
+            {
+
+                Console.WriteLine("the ticket not found");
+                return;
+            }
+
+            // Req 2:  Retrieve the passenger name from passengerNames
+
+            int passenger = ticketNumbers.IndexOf( TicketID); // Find the passenger's name by locating the TicketID in
+                                                             // ticketNumbers and using the same index in passengerNames
+
+            string PassengerName = passengerNames[passenger];
+
+            // Req 3:  Check if the ticket is in cancelledTickets
+
+            if (cancelledTickets.Contains(TicketID) == true) // Check if the TicketID exists in the cancelledTickets list
+
+            {
+
+                Console.WriteLine("the tecket  is cancelled");
+
+            }
+
+            // req 4 : retrieve the booking value
+
+            if (!bookingRecord.ContainsValue(TicketID))
+            { 
+
+                Console.WriteLine("No booking found for this ticket");
+
+            }
+
+            // req 5 : retrieve the booking value
 
 
 
-        //case 4) View Booking Details
+        }
 
 
         //case 5) Update a Booking
@@ -336,7 +403,7 @@ namespace Mini_Flight_Management_System
 
                     //case 4) View Booking Details
                     case 4:
-
+                        ViewBookingDetails();
                         break;
 
 
