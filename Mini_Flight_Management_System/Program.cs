@@ -1,4 +1,8 @@
 ﻿using System.Buffers.Text;
+using System.Collections;
+using System.ComponentModel.DataAnnotations;
+using System.Net.Sockets;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 
 namespace Mini_Flight_Management_System
@@ -513,11 +517,129 @@ namespace Mini_Flight_Management_System
 
 
 
-
-
-
-
         //case 6) Cancel a Ticket
+        public static void CancelTicket()
+        {
+
+
+            //req: 1 Prompt for ticket ID. Validate it exists in ticketNumbers and is not already in cancelledTickets.
+
+            Console.WriteLine("=== Cancel Ticket ===");
+
+            Console.WriteLine("");
+
+            Console.WriteLine("enter ticket ID: ");
+            string TicketID = Console.ReadLine();
+
+            if (ticketNumbers.Contains(TicketID) == false) // Check if the TicketID exists in the TicketNumbers  list
+
+            {
+
+                Console.WriteLine("Ticket not found");
+                return;
+            }
+
+            if (cancelledTickets.Contains(TicketID) == true) // Check if the TicketID is not exists in the CancelTickets
+
+            {
+
+                Console.WriteLine("This ticket has already been cancelled");
+                return;
+            }
+
+            // req: 2 Retrieve the associated passenger name from passengerNames using the index match.
+
+            int passenger = ticketNumbers.IndexOf(TicketID); // Find the passenger's name by locating the TicketID in
+                                                             // ticketNumbers and using the same index in passengerNames
+
+            string PassengerName = passengerNames[passenger];
+
+            // req: 3 If the ticket exists in bookingRecord, remove it from the dictionary and display what booking was removed.
+
+            if (bookingRecord.ContainsKey(TicketID) == true)
+            {
+
+                Console.WriteLine($"the TicketID: {bookingRecord.Remove(TicketID)} was removed from bookingrecord successfully!!");
+
+            }
+            // req : 4 Add the ticket ID to cancelledTickets.
+
+            if (cancelledTickets.Contains(TicketID) == false)
+            {
+                cancelledTickets.Add(TicketID); 
+                Console.WriteLine($"the TicketID: {TicketID} was removed from bookingrecord successfully!!");
+
+            }
+
+            // req : 5 Check if the passenger name exists in checkedInQueue.If so, rebuild the queue using a temporary Queue, skipping that
+            // passenger.Display a notice that they were removed from the check-in queue.
+
+            if (checkedInQueue.Contains(PassengerName) == true) // Check if the passenger exists in the check-in queue
+
+            {
+                Queue<string> tempQueue = new Queue<string>();     // Create a temporary queue
+
+
+                while (checkedInQueue.Count > 0)         // Go through all passengers in the queue
+
+
+                {
+                    string name = checkedInQueue.Dequeue();    // Remove one passenger from the queue
+
+
+                    if (name != PassengerName)         // Add passenger to temporary queue if it is not the cancelled passenger
+
+                    {
+                        tempQueue.Enqueue(name);
+                    }
+                }
+
+                checkedInQueue = tempQueue;  // Replace the original queue with the updated queue
+
+
+                Console.WriteLine(PassengerName + " was removed from the check-in queue.");
+            }
+
+            // req: 6 Check if the passenger name is in the boardingStack. If so, rebuild the stack using a temporary Stack, preserving order but
+            // excluding that passenger. Display a notice.
+
+            
+            if (boardingStack.Contains(PassengerName)) // Check if the passenger is in the boarding stack
+            {
+                Stack<string> tempStack = new Stack<string>();   // Create a temporary stack
+
+
+                while (boardingStack.Count > 0)  // Go through all passengers in the stack
+
+                {
+                    string name = boardingStack.Pop();   // Remove one passenger from the stack
+
+
+                    if (name != PassengerName) // Add passenger to the temporary stack if it is not the cancelled passenger
+                    {
+                        tempStack.Push(name);
+                    }
+                }
+
+                boardingStack = tempStack; // Replace the old stack with the new stack
+
+
+                Console.WriteLine(PassengerName + " was removed from the boarding stack.");  
+
+            }
+
+            // req: 7 Display a full cancellation summary
+
+            Console.WriteLine("=== Cancellation Summary ===");
+
+            Console.WriteLine("Passenger Name: " + PassengerName);
+
+            Console.WriteLine("Ticket ID: " + TicketID);
+
+            Console.WriteLine("Status: Cancelled");
+
+
+        }
 
 
         //case 7) Passenger Check-In
@@ -578,8 +700,8 @@ namespace Mini_Flight_Management_System
 
                     //case 6) Cancel a Ticket
                     case 6:
-
-                        break;
+                        CancelTicket();
+                        break; 
 
 
                     //case 7) Passenger Check-In
