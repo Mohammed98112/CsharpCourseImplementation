@@ -188,7 +188,7 @@ namespace Mini_Flight_Management_System
             string TicketID = Console.ReadLine();
 
             // Req 1: Validate it exists in ticketNumbers
-            if (ticketNumbers.Contains(TicketID) == true) // Check if the TicketID does NOT exist in the ticketNumbers list
+            if (ticketNumbers.Contains(TicketID) == false) // Check if the TicketID does NOT exist in the ticketNumbers list
 
             {
 
@@ -333,26 +333,44 @@ namespace Mini_Flight_Management_System
             {
 
                 Console.WriteLine("the tecket  is cancelled");
-
+                return;
             }
 
             // req 4 : retrieve the booking value
 
-            if (!bookingRecord.ContainsValue(TicketID))
-            { 
+            if (!bookingRecord.ContainsKey(TicketID)) // Check if the TicketID exists in the bookingRecord dictionary
+
+            {
 
                 Console.WriteLine("No booking found for this ticket");
-
+                return;
             }
 
             // req 5 : retrieve the booking value
+            //string = single value
+            //string + [] + split = multiple values
 
+            string[] details = bookingRecord[TicketID].Split('|'); // Retrieve booking details from dictionary and split into flight number and date
+
+
+            Console.WriteLine("=== Booking Summary ===");
+            Console.WriteLine("Passenger: " + PassengerName);
+            Console.WriteLine("Ticket ID: " + TicketID);
+            Console.WriteLine("Flight No: " + details[0]);
+            Console.WriteLine("Date: " + details[1]);
 
 
         }
 
-
+          
         //case 5) Update a Booking
+        public static void UpdateBooking()
+        {
+
+
+
+
+        }
 
 
         //case 6) Cancel a Ticket
@@ -409,7 +427,7 @@ namespace Mini_Flight_Management_System
 
                     //case 5) Update a Booking
                     case 5:
-
+                        UpdateBooking();
                         break;
 
 
