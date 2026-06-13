@@ -643,17 +643,161 @@ namespace Mini_Flight_Management_System
 
 
         //case 7) Passenger Check-In
+        // Requirement 1: Sub-menu
+        static void CheckInMenu()
+        {
+            bool back = false;
+            while (!back)
+            {
+                Console.WriteLine("\n--- Passenger Check-In ---");
+                Console.WriteLine("1) Check in a passenger");
+                Console.WriteLine("2) View check-in queue");
+                Console.WriteLine("3) Process next passenger");
+                Console.WriteLine("0) Back");
+                Console.Write("Choose an option: ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        CheckInPassenger();
+                        break;
+                    case "2":
+                        ViewCheckInQueue();
+                        break;
+                    case "3":
+                        ProcessNextPassenger();
+                        break;
+                    case "0":
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option. Try again.");
+                        break;
+                }
+            }
+        }
+
+        // Requirements 2, 3, 4: Check-in logic
+        static void CheckInPassenger()
+        {
+            Console.Write("Enter ticket ID: ");
+            string ticketId = Console.ReadLine();
+
+            // Validate ticket exists
+            if (!ticketNumbers.Contains(ticketId))
+            {
+                Console.WriteLine("Error: Ticket ID does not exist.");
+                return;
+            }
+
+            // Validate not cancelled
+            if (cancelledTickets.Contains(ticketId))
+            {
+                Console.WriteLine("Error: This ticket has been cancelled.");
+                return;
+            }
+
+            // Confirm booking exists
+            if (!bookingRecord.ContainsKey(ticketId))
+            {
+                Console.WriteLine("Error: No booking record found for this ticket.");
+                return;
+            }
+
+            // Retrieve passenger name from booking record
+            string passengerName = bookingRecord[ticketId].Split('|')[0];
+
+            // Confirm passenger is not already in either queue
+            if (checkedInQueue.Contains(passengerName) || waitlistQueue.Contains(passengerName))
+            {
+                Console.WriteLine($"Error: {passengerName} is already checked in or on the waitlist.");
+                return;
+            }
+
+            // Requirement 3: queue has space
+            if (checkedInQueue.Count < 10)
+            {
+                checkedInQueue.Enqueue(passengerName);
+                Console.WriteLine($"Success: {passengerName} has been checked in. " + $"Position in queue: {checkedInQueue.Count}.");
+            }
+            // Requirement 4: queue is full
+            else
+            {
+                waitlistQueue.Enqueue(passengerName);
+                Console.WriteLine($"Check-in queue is full (10/10). " + $"{passengerName} has been placed on the waitlist.");
+            }
+        }
+
+        // Requirement 5: View queue (no dequeue)
+        static void ViewCheckInQueue()
+        {
+            Console.WriteLine("--- Current Check-In Queue ---");
+
+            if (checkedInQueue.Count == 0)
+            {
+                Console.WriteLine("The check-in queue is currently empty.");
+            }
+            else
+            {
+                int position = 1;
+                foreach (var passenger in checkedInQueue)
+                {
+                    Console.WriteLine($"Position {position}: {passenger}");
+                    position++;
+                }
+            }
+
+            Console.WriteLine($"Waitlist count: {waitlistQueue.Count}");
+        }
+
+        // Requirement 6: Process next passenger
+        static void ProcessNextPassenger()
+        {
+            if (checkedInQueue.Count == 0)
+            {
+                Console.WriteLine("Check-in queue is empty. No passenger to process.");
+                return;
+            }
+
+            // Dequeue the front passenger
+            string processed = checkedInQueue.Dequeue();
+            Console.WriteLine($"Processed passenger: {processed}");
+
+            // Automatically move a waitlisted passenger into the now-open slot
+            if (waitlistQueue.Count > 0)
+            {
+                string moved = waitlistQueue.Dequeue();
+                checkedInQueue.Enqueue(moved);
+                Console.WriteLine($"{moved} has been moved from the waitlist to the check-in queue.");
+            }
+        }
 
 
-        //case 8) Board Passengers Boarding Stack
 
 
-        //case 9) Generate Flight Manifest
 
 
-        //case 10) Manage Waitlist & Seat Assignment
 
-        static void Main(string[] args)
+
+
+
+
+
+
+
+
+
+
+            //case 8) Board Passengers Boarding Stack
+
+
+            //case 9) Generate Flight Manifest
+
+
+            //case 10) Manage Waitlist & Seat Assignment
+
+            static void Main(string[] args)
         {
 
 
@@ -706,6 +850,7 @@ namespace Mini_Flight_Management_System
 
                     //case 7) Passenger Check-In
                     case 7:
+                        CheckInMenu();
                         break;
 
 
