@@ -302,7 +302,7 @@ namespace Mini_Flight_Management_System
 
 
         }
-
+         
         //case 4) View Booking Details 
         public static void ViewBookingDetails()
         {
