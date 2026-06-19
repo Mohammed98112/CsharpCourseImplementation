@@ -649,7 +649,7 @@ namespace Mini_Flight_Management_System
             bool back = false;
             while (!back)
             {
-                Console.WriteLine("\n--- Passenger Check-In ---");
+                Console.WriteLine("--- Passenger Check-In ---");
                 Console.WriteLine("1) Check in a passenger");
                 Console.WriteLine("2) View check-in queue");
                 Console.WriteLine("3) Process next passenger");
@@ -678,7 +678,7 @@ namespace Mini_Flight_Management_System
             }
         }
 
-        // Requirements 2, 3, 4: Check-in logic
+        // Requirements 2, 3, 4: Check-in 
         static void CheckInPassenger()
         {
             Console.Write("Enter ticket ID: ");
@@ -727,9 +727,9 @@ namespace Mini_Flight_Management_System
                 waitlistQueue.Enqueue(passengerName);
                 Console.WriteLine($"Check-in queue is full (10/10). " + $"{passengerName} has been placed on the waitlist.");
             }
-        }
+        }    
 
-        // Requirement 5: View queue (no dequeue)
+        // Requirement 5: View queue
         static void ViewCheckInQueue()
         {
             Console.WriteLine("--- Current Check-In Queue ---");
