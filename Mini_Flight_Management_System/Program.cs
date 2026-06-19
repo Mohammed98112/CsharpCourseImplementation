@@ -775,20 +775,6 @@ namespace Mini_Flight_Management_System
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             //case 8) Board Passengers Boarding Stack
 
 
